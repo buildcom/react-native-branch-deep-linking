@@ -1,6 +1,6 @@
 {
   "name": "react-native-branch",
-  "version": "2.0.0-rc.3",
+  "version": "2.3.3",
   "description": "Branch Metrics React Native SDK",
   "main": "src/index.js",
   "files": [
@@ -57,7 +57,6 @@
   },
   "homepage": "https://github.com/BranchMetrics/react-native-branch-deep-linking",
   "peerDependencies": {
-    "react": ">=15.4.0",
     "react-native": ">=0.40.0"
   },
   "devDependencies": {
@@ -73,7 +72,7 @@
     "react-addons-test-utils": "16.0.0-alpha.3",
     "react-addons-update": "16.0.0-alpha.3",
     "react-dom": "16.0.0-alpha.3",
-    "react-native": "0.43.1",
+    "react-native": "^0.43.0",
     "react-native-mock": "^0.3.0",
     "sinon": "*",
     "underscore": "*"

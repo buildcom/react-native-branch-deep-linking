@@ -2,6 +2,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTEventDispatcher.h>
 #import <React/RCTLog.h>
+#import "BranchEvent+RNBranch.h"
 #import "BranchLinkProperties+RNBranch.h"
 #import "BranchUniversalObject+RNBranch.h"
 #import "RNBranchAgingDictionary.h"
@@ -23,6 +24,7 @@ static NSString * const IdentFieldName = @"ident";
 // These are only really exposed to the JS layer, so keep them internal for now.
 static NSString * const RNBranchErrorDomain = @"RNBranchErrorDomain";
 static NSInteger const RNBranchUniversalObjectNotFoundError = 1;
+
 
 #pragma mark - Private RNBranch declarations
 
@@ -56,17 +58,23 @@ RCT_EXPORT_MODULE();
                 instance = [Branch getInstance: key];
             }
             else {
-                instance = usingTestInstance ? [Branch getTestInstance] : [Branch getInstance];
+                [Branch setUseTestBranchKey:usingTestInstance];
+                instance = [Branch getInstance];
             }
-            
+
             [self setupBranchInstance:instance];
         });
         return instance;
     }
 }
 
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
+
 + (void)setupBranchInstance:(Branch *)instance
 {
+    RCTLogInfo(@"Initializing Branch SDK v. %@", BNC_SDK_VERSION);
     RNBranchConfig *config = RNBranchConfig.instance;
     if (config.debugMode) {
         [instance setDebug];
@@ -92,7 +100,31 @@ RCT_EXPORT_MODULE();
              @"PURCHASE_INITIATED_EVENT": BNCPurchaseInitiatedEvent,
              @"REGISTER_VIEW_EVENT": BNCRegisterViewEvent,
              @"SHARE_COMPLETED_EVENT": BNCShareCompletedEvent,
-             @"SHARE_INITIATED_EVENT": BNCShareInitiatedEvent
+             @"SHARE_INITIATED_EVENT": BNCShareInitiatedEvent,
+
+             // constants for use with BranchEvent
+
+             // Commerce events
+             @"STANDARD_EVENT_ADD_TO_CART": BranchStandardEventAddToCart,
+             @"STANDARD_EVENT_ADD_TO_WISHLIST": BranchStandardEventAddToWishlist,
+             @"STANDARD_EVENT_VIEW_CART": BranchStandardEventViewCart,
+             @"STANDARD_EVENT_INITIATE_PURCHASE": BranchStandardEventInitiatePurchase,
+             @"STANDARD_EVENT_ADD_PAYMENT_INFO": BranchStandardEventAddPaymentInfo,
+             @"STANDARD_EVENT_PURCHASE": BranchStandardEventPurchase,
+             @"STANDARD_EVENT_SPEND_CREDITS": BranchStandardEventSpendCredits,
+
+             // Content Events
+             @"STANDARD_EVENT_SEARCH": BranchStandardEventSearch,
+             @"STANDARD_EVENT_VIEW_ITEM": BranchStandardEventViewItem,
+             @"STANDARD_EVENT_VIEW_ITEMS": BranchStandardEventViewItems,
+             @"STANDARD_EVENT_RATE": BranchStandardEventRate,
+             @"STANDARD_EVENT_SHARE": BranchStandardEventShare,
+
+             // User Lifecycle Events
+             @"STANDARD_EVENT_COMPLETE_REGISTRATION": BranchStandardEventCompleteRegistration,
+             @"STANDARD_EVENT_COMPLETE_TUTORIAL": BranchStandardEventCompleteTutorial,
+             @"STANDARD_EVENT_ACHIEVE_LEVEL": BranchStandardEventAchieveLevel,
+             @"STANDARD_EVENT_UNLOCK_ACHIEVEMENT": BranchStandardEventUnlockAchievement
              };
 }
 
@@ -132,7 +164,7 @@ RCT_EXPORT_MODULE();
             BOOL clickedBranchLink = params[@"+clicked_branch_link"];
 
             if (clickedBranchLink) {
-                BranchUniversalObject *branchUniversalObject = [BranchUniversalObject getBranchUniversalObjectFromDictionary:params];
+                BranchUniversalObject *branchUniversalObject = [BranchUniversalObject objectWithDictionary:params];
                 if (branchUniversalObject) result[RNBranchLinkOpenedNotificationBranchUniversalObjectKey] = branchUniversalObject;
 
                 BranchLinkProperties *linkProperties = [BranchLinkProperties getBranchLinkPropertiesFromDictionary:params];
@@ -157,9 +189,12 @@ RCT_EXPORT_MODULE();
     return handled;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpartial-availability"
 + (BOOL)continueUserActivity:(NSUserActivity *)userActivity {
     return [self.branch continueUserActivity:userActivity];
 }
+#pragma clang diagnostic pop
 
 #pragma mark - Object lifecycle
 
@@ -241,6 +276,21 @@ RCT_EXPORT_MODULE();
 
 #pragma mark - Methods exported to React Native
 
+#pragma mark disableTracking
+RCT_EXPORT_METHOD(
+                  disableTracking:(BOOL)disable
+                  ) {
+    [Branch setTrackingDisabled: disable];
+}
+
+#pragma mark isTrackingDisabled
+RCT_EXPORT_METHOD(
+                  isTrackingDisabled:(RCTPromiseResolveBlock)resolve
+                  rejecter:(__unused RCTPromiseRejectBlock)reject
+                  ) {
+    resolve([Branch trackingDisabled] ? @YES : @NO);
+}
+
 #pragma mark redeemInitSessionResult
 RCT_EXPORT_METHOD(
                   redeemInitSessionResult:(RCTPromiseResolveBlock)resolve
@@ -279,6 +329,26 @@ RCT_EXPORT_METHOD(
     [self.class.branch logout];
 }
 
+#pragma mark openURL
+RCT_EXPORT_METHOD(
+                  openURL:(NSString *)urlString
+                  ) {
+    [self.class.branch handleDeepLinkWithNewSession:[NSURL URLWithString:urlString]];
+}
+
+#pragma mark sendCommerceEvent
+RCT_EXPORT_METHOD(
+                  sendCommerceEvent:(NSString *)revenue
+                  metadata:(NSDictionary *)metadata
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(__unused RCTPromiseRejectBlock)reject
+                  ) {
+    BNCCommerceEvent *commerceEvent = [BNCCommerceEvent new];
+    commerceEvent.revenue = [NSDecimalNumber decimalNumberWithString:revenue];
+    [self.class.branch sendCommerceEvent:commerceEvent metadata:metadata withCompletion:nil];
+    resolve(NSNull.null);
+}
+
 #pragma mark userCompletedAction
 RCT_EXPORT_METHOD(
                   userCompletedAction:(NSString *)event withState:(NSDictionary *)appState
@@ -312,6 +382,37 @@ RCT_EXPORT_METHOD(
     if (!branchUniversalObject) return;
 
     [branchUniversalObject userCompletedAction:event withState:state];
+    resolve(NSNull.null);
+}
+
+#pragma mark logEvent
+RCT_EXPORT_METHOD(
+                  logEvent:(NSArray *)identifiers
+                  eventName:(NSString *)eventName
+                  params:(NSDictionary *)params
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject
+                  ) {
+    BranchEvent *event = [[BranchEvent alloc] initWithName:eventName map:params];
+
+    NSMutableArray<BranchUniversalObject *> *buos = @[].mutableCopy;
+    for (NSString *identifier in identifiers) {
+        BranchUniversalObject *buo = [self findUniversalObjectWithIdent:identifier rejecter:reject];
+        if (!buo) return;
+
+        [buos addObject:buo];
+    }
+
+    event.contentItems = buos;
+    if ([eventName isEqualToString:BranchStandardEventViewItem] && params.count == 0) {
+        for (BranchUniversalObject *buo in buos) {
+            if (!buo.locallyIndex) continue;
+            // for now at least, pending possible changes to the native SDK
+            [buo listOnSpotlight];
+        }
+    }
+
+    [event logEvent];
     resolve(NSNull.null);
 }
 
@@ -391,8 +492,12 @@ RCT_EXPORT_METHOD(
         if (!error) {
             RCTLogInfo(@"RNBranch Success");
             resolve(@{ @"url": url });
-        } else {
-            reject([NSString stringWithFormat: @"%lu", (long)error.code], error.localizedDescription, error);
+        }
+        else if (error.code == BNCDuplicateResourceError) {
+            reject(@"RNBranch::Error::DuplicateResourceError", error.localizedDescription, error);
+        }
+        else {
+            reject(@"RNBranch::Error", error.localizedDescription, error);
         }
     }];
 }
@@ -444,12 +549,18 @@ RCT_EXPORT_METHOD(
 
 #pragma mark loadRewards
 RCT_EXPORT_METHOD(
-                  loadRewards:(RCTPromiseResolveBlock)resolve
+                  loadRewards:(NSString *)bucket
+                  resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject
                   ) {
     [self.class.branch loadRewardsWithCallback:^(BOOL changed, NSError *error) {
         if(!error) {
-            int credits = (int)[self.class.branch getCredits];
+            int credits = 0;
+            if (bucket) {
+                credits = (int)[self.class.branch getCreditsForBucket:bucket];
+            } else {
+                credits = (int)[self.class.branch getCredits];
+            }
             resolve(@{@"credits": @(credits)});
         } else {
             RCTLogError(@"Load Rewards Error: %@", error.localizedDescription);

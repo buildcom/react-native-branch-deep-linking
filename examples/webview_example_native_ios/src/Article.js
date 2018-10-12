@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TouchableHighlight, View, WebView } from 'react-native'
 
-import branch, { RegisterViewEvent } from 'react-native-branch'
+import branch, { BranchEvent } from 'react-native-branch'
 
 const styles = StyleSheet.create({
   container: {
@@ -32,14 +32,13 @@ export default class Article extends Component {
 
   async componentDidMount() {
     this.buo = await branch.createBranchUniversalObject("planet/" + this.props.route.title, {
-      automaticallyListOnSpotlight: true, // ignored on Android
+      locallyIndex: true,
       canonicalUrl: this.props.route.url,
       title: this.props.route.title,
-      contentImageUrl: this.props.route.image,
-      contentIndexingMode: 'public' // for Spotlight indexing
+      contentImageUrl: this.props.route.image
     })
-    this.buo.userCompletedAction(RegisterViewEvent)
-    console.log("Created Branch Universal Object and logged RegisterViewEvent.")
+    this.buo.logEvent(BranchEvent.ViewItem)
+    console.log("Created Branch Universal Object and logged standard view item event.")
   }
 
   componentWillUnmount() {

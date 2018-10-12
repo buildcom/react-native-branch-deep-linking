@@ -4,10 +4,10 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:bnctestbed.app.link</string>
-		<string>applinks:bnctestbed-alternate.app.link</string>
-		<string>applinks:bnctestbed.test-app.link</string>
-		<string>applinks:bnctestbed-alternate.test-app.link</string>
+		<string>applinks:s5sd.app.link</string>
+		<string>applinks:s5sd-alternate.app.link</string>
+		<string>applinks:s5sd.test-app.link</string>
+		<string>applinks:s5sd-alternate.test-app.link</string>
 	</array>
 </dict>
 </plist>

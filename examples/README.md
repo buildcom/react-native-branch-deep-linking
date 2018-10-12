@@ -4,41 +4,18 @@ There are several working examples in this directory.
 
 See each app for further details, including build instructions.
 
+[browser_example]: ./browser_example
 [testbed_native_android]: ./testbed_native_android
 [testbed_native_ios]: ./testbed_native_ios
 [testbed_simple]: ./testbed_simple
 [webview_example]: ./webview_example
 [webview_example_native_ios]: ./webview_example_native_ios
+[webview_tutorial]: ./webview_tutorial
 
-## Automatically set up iOS Branch configuration with Fastlane
+## [browser_example]
 
-To run any of the iOS examples ([testbed_native_ios], [testbed_simple], [webview_example], [webview_example_native_ios]) on a device, you can use Fastlane to set the following
-Branch-related configuration parameters without changing settings manually in Xcode.
-
-- Branch live key
-- Branch test key
-- Branch Universal Link domain(s)
-- Application bundle identifier
-- Code-signing team
-
-Once this is done, you can deploy the app on a device and open Universal Links in the app on the device.
-
-To use this tool:
-
-```bash
-export BRANCH_LIVE_KEY=key_live_xxxx
-export BRANCH_TEST_KEY=key_test_yyyy
-export BRANCH_APP_LINK_SUBDOMAIN=myapp # myapp.app.link
-# OR
-export BRANCH_DOMAINS=example.com # for custom domains
-bundle install
-cd webview_example
-bundle exec fastlane update_branch
-```
-
-The plugin crawls the Branch-generated apple-app-site-association file for the domain to get the
-team and bundle identifiers that you entered in the Branch Dashboard. The live or test key is required.
-Both are not required, but both may be supplied to set up both environments.
+This app demonstrates use of the `branch.openURL` method to build a Branch link browser that loads Branch
+links using the SDK to resolve the links rather than web redirects.
 
 ## webview_example apps
 
@@ -51,6 +28,10 @@ This is a pure React Native app that integrates the react-native-branch NPM modu
 ### [webview_example_native_ios]
 
 This is a Swift app that integrates the Branch SDK and the react-native-branch NPM module in a React Native component.
+
+### [webview_tutorial]
+
+Build webview_example step by step, starting with an app that does not include the Branch SDK.
 
 ## testbed apps
 

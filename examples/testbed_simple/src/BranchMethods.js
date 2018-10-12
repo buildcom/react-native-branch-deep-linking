@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import Button from './Button'
 
-import branch, { RegisterViewEvent } from 'react-native-branch'
+import branch, { RegisterViewEvent, BranchEvent } from 'react-native-branch'
 
 const defaultBUO = {
   title: 'wallo'
@@ -116,6 +116,106 @@ class BranchMethods extends Component {
     }
   }
 
+  sendCommerceEvent = async() => {
+    try {
+      let result = await branch.sendCommerceEvent(20.00, {"key": "value"})
+
+      console.log('sendCommerceEvent', result)
+      this.addResult('success', 'sendCommerceEvent', result)
+    } catch (err) {
+      console.log('sendCommerceEvent err', err.toString())
+      this.addResult('error', 'sendCommerceEvent', err.toString())
+    }
+  }
+
+  disableTracking = async () => {
+    try {
+      let disabled = await branch.isTrackingDisabled()
+      branch.disableTracking(!disabled)
+      disabled = await branch.isTrackingDisabled()
+      let status = disabled ? 'Tracking Disabled' : 'Tracking Enabled'
+      console.log('disableTracking', status)
+      this.addResult('success', 'disableTracking', status)
+    } catch (err) {
+      console.log('disableTracking err', err)
+      this.addResult('error', 'disableTracking', err.toString())
+    }
+  }
+
+  isTrackingDisabled = async () => {
+    try {
+      let disabled = await branch.isTrackingDisabled()
+      let status = disabled ? 'Tracking is Disabled' : 'Tracking is Enabled'
+      console.log('isTrackingDisabled', status)
+      this.addResult('success', 'isTrackingDisabled', status)
+    } catch (err) {
+      console.log('isTrackingDisabled err', err)
+      this.addResult('error', 'isTrackingDisabled', err.toString())
+    }
+  }
+
+  logStandardEvent = async () => {
+    if (!this.buo) await this.createBranchUniversalObject()
+    try {
+      let branchEvent = new BranchEvent(
+        BranchEvent.Purchase,
+        this.buo,
+        {
+          transactionID: '12344555',
+          currency: 'USD',
+          revenue: 1.5,
+          shipping: 10.2,
+          tax: 12.3,
+          coupon: 'test_coupon',
+          affiliation: 'test_affiliation',
+          description: 'Test purchase event',
+          searchQuery: 'test keyword',
+          customData: {
+            "Custom_Event_Property_Key1": "Custom_Event_Property_val1",
+            "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
+          }
+        }
+      )
+      branchEvent.logEvent()
+
+      this.addResult('success', 'sendStandardEvent', branchEvent)
+    } catch (err) {
+      console.log('sendStandardEvent err', err)
+      this.addResult('error', 'sendStandardEvent', err.toString())
+    }
+  }
+
+  logCustomEvent = async () => {
+    if (!this.buo) await this.createBranchUniversalObject()
+    try {
+      let branchEvent = new BranchEvent(
+        'Test Custom Event Name',
+        this.buo,
+        {
+          transactionID: '12344555',
+          currency: 'USD',
+          revenue: 1.5,
+          shipping: 10.2,
+          tax: 12.3,
+          coupon: 'test_coupon',
+          affiliation: 'test_affiliation',
+          description: 'Test purchase event',
+          searchQuery: 'test keyword',
+          customData: {
+            "Custom_Event_Property_Key1": "Custom_Event_Property_val1",
+            "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
+          }
+        }
+      )
+      branchEvent.logEvent()
+
+      this.addResult('success', 'sendStandardEvent', branchEvent)
+    } catch (err) {
+      console.log('sendStandardEvent err', err)
+      this.addResult('error', 'sendStandardEvent', err.toString())
+    }
+  }
+
   addResult(type, slug, payload) {
     let result = { type, slug, payload }
     this.setState({
@@ -142,8 +242,11 @@ class BranchMethods extends Component {
         </View>
         <Text style={styles.header}>METHODS</Text>
         <ScrollView style={styles.buttonsContainer}>
+          <Button onPress={this.disableTracking}>disableTracking (switch on/off)</Button>
+          <Button onPress={this.isTrackingDisabled}>isTrackingDisabled</Button>
           <Button onPress={this.createBranchUniversalObject}>createBranchUniversalObject</Button>
           <Button onPress={this.userCompletedAction}>userCompletedAction</Button>
+          <Button onPress={this.sendCommerceEvent}>sendCommerceEvent</Button>
           <Button onPress={this.generateShortUrl}>generateShortUrl</Button>
           <Button onPress={this.listOnSpotlight}>listOnSpotlight</Button>
           <Button onPress={this.showShareSheet}>showShareSheet</Button>
@@ -151,6 +254,8 @@ class BranchMethods extends Component {
           <Button onPress={this.redeemRewards.bind(this, 'testBucket')}>redeemRewards (with bucket)</Button>
           <Button onPress={this.loadRewards}>loadRewards</Button>
           <Button onPress={this.getCreditHistory}>getCreditHistory</Button>
+          <Button onPress={this.logStandardEvent}>BranchEvent.logEvent (Standard)</Button>
+          <Button onPress={this.logCustomEvent}>BranchEvent.logEvent (Custom)</Button>
         </ScrollView>
       </View>
     )

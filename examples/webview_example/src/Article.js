@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TouchableHighlight, View, WebView } from 'react-native'
 
-import branch, { RegisterViewEvent } from 'react-native-branch'
+import branch, { BranchEvent } from 'react-native-branch'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    marginTop: 64
+    marginTop: 0
   },
   webView: {
-    flex: 0.85
   },
   button: {
     backgroundColor: '#cceeee',
@@ -31,15 +30,14 @@ export default class Article extends Component {
   buo = null
 
   async componentDidMount() {
-    this.buo = await branch.createBranchUniversalObject("planet/" + this.props.route.title, {
-      automaticallyListOnSpotlight: true, // ignored on Android
-      canonicalUrl: this.props.route.url,
-      title: this.props.route.title,
-      contentImageUrl: this.props.route.image,
-      contentIndexingMode: 'public' // for Spotlight indexing
+    this.buo = await branch.createBranchUniversalObject("planet/" + this.props.navigation.state.params.title, {
+      locallyIndex: true,
+      canonicalUrl: this.props.navigation.state.params.url,
+      title: this.props.navigation.state.params.title,
+      contentImageUrl: this.props.navigation.state.params.image
     })
-    this.buo.userCompletedAction(RegisterViewEvent)
-    console.log("Created Branch Universal Object and logged RegisterViewEvent.")
+    this.buo.logEvent(BranchEvent.ViewItem)
+    console.log("Created Branch Universal Object and logged standard view item event.")
   }
 
   componentWillUnmount() {
@@ -54,7 +52,7 @@ export default class Article extends Component {
         style={styles.container} >
         <WebView
           style={styles.webView}
-          source={{uri: this.props.route.url}} />
+          source={{uri: this.props.navigation.state.params.url}} />
         <TouchableHighlight
           onPress={() => this.onShare()}
           style={styles.button} >
@@ -69,14 +67,14 @@ export default class Article extends Component {
 
   async onShare() {
     let { channel, completed, error } = await this.buo.showShareSheet({
-      emailSubject: "The Planet " + this.props.route.title,
-      messageBody: "Read about the planet " + this.props.route.title + ".",
-      messageHeader: "The Planet " + this.props.route.title
+      emailSubject: "The Planet " + this.props.navigation.state.params.title,
+      messageBody: "Read about the planet " + this.props.navigation.state.params.title + ".",
+      messageHeader: "The Planet " + this.props.navigation.state.params.title
     }, {
       feature: "share",
       channel: "RNApp"
     }, {
-      $desktop_url: this.props.route.url,
+      $desktop_url: this.props.navigation.state.params.url,
       $ios_deepview: "branch_default"
     })
 

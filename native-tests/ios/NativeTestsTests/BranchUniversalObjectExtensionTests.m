@@ -16,6 +16,9 @@
 
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @implementation BranchUniversalObjectExtensionTests
 
 #pragma mark - General tests
@@ -24,7 +27,7 @@
 {
     NSDictionary<NSString *, RNBranchProperty *> *supportedProperties = BranchUniversalObject.supportedProperties;
     
-    XCTAssertEqual(12, supportedProperties.count);
+    XCTAssertEqual(15, supportedProperties.count);
 
     XCTAssert([supportedProperties[@"automaticallyListOnSpotlight"] isEqual:
                [RNBranchProperty propertyWithSetterSelector:@selector(setAutomaticallyListOnSpotlightWithNumber:) type:NSNumber.class]]);
@@ -78,7 +81,7 @@
     XCTAssertEqualObjects(@"canonicalUrl", buo.canonicalUrl);
     XCTAssertEqualObjects(@"contentDescription", buo.contentDescription);
     XCTAssertEqualObjects(@"contentImageUrl", buo.imageUrl);
-    XCTAssertEqual(ContentIndexModePublic, buo.contentIndexMode);
+    XCTAssertEqual(BranchContentIndexModePublic, buo.contentIndexMode);
     XCTAssertEqualObjects(@"currency", buo.currency);
     XCTAssertEqual(expectedExpiration, buo.expirationDate.timeIntervalSince1970);
 
@@ -100,14 +103,14 @@
 {
     BranchUniversalObject *buo = [[BranchUniversalObject alloc] init];
     [buo setContentIndexingMode:@"public"];
-    XCTAssertEqual(ContentIndexModePublic, buo.contentIndexMode);
+    XCTAssertEqual(BranchContentIndexModePublic, buo.contentIndexMode);
 }
 
 - (void)testPrivateContentIndexingMode
 {
     BranchUniversalObject *buo = [[BranchUniversalObject alloc] init];
     [buo setContentIndexingMode:@"private"];
-    XCTAssertEqual(ContentIndexModePrivate, buo.contentIndexMode);
+    XCTAssertEqual(BranchContentIndexModePrivate, buo.contentIndexMode);
 }
 
 #pragma mark - Automatically list on spotlight
@@ -151,3 +154,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop

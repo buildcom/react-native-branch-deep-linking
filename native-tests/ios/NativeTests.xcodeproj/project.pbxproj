@@ -13,6 +13,7 @@
 		7B7C90E51EA6E496005B470E /* BranchUniversalObjectExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C90E41EA6E496005B470E /* BranchUniversalObjectExtensionTests.m */; };
 		7B7C90E71EA6E71E005B470E /* RNBranchPropertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C90E61EA6E71E005B470E /* RNBranchPropertyTests.m */; };
 		7B7C90E91EA6EC8C005B470E /* BranchLinkPropertiesExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C90E81EA6EC8C005B470E /* BranchLinkPropertiesExtensionTests.m */; };
+		7B84EBA91FD203B1009C6C87 /* BranchEventExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B84EBA81FD203B1009C6C87 /* BranchEventExtensionTests.m */; };
 		7BAD46FB1EAA66E700080008 /* RNBranchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD46FA1EAA66E700080008 /* RNBranchTests.m */; };
 		7BAD46FE1EAA779D00080008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD46FD1EAA779D00080008 /* AppDelegate.m */; };
 		7BCEC8B01E9FE59A00271263 /* RNBranchAgingDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEC8AF1E9FE59A00271263 /* RNBranchAgingDictionaryTests.m */; };
@@ -43,6 +44,7 @@
 		7B7C90E41EA6E496005B470E /* BranchUniversalObjectExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchUniversalObjectExtensionTests.m; sourceTree = "<group>"; };
 		7B7C90E61EA6E71E005B470E /* RNBranchPropertyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBranchPropertyTests.m; sourceTree = "<group>"; };
 		7B7C90E81EA6EC8C005B470E /* BranchLinkPropertiesExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchLinkPropertiesExtensionTests.m; sourceTree = "<group>"; };
+		7B84EBA81FD203B1009C6C87 /* BranchEventExtensionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BranchEventExtensionTests.m; sourceTree = "<group>"; };
 		7BAD46FA1EAA66E700080008 /* RNBranchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBranchTests.m; sourceTree = "<group>"; };
 		7BAD46FC1EAA779D00080008 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7BAD46FD1EAA779D00080008 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		7B23B67E1E9FDCEB006CEE75 /* NativeTestsTests */ = {
 			isa = PBXGroup;
 			children = (
+				7B84EBA81FD203B1009C6C87 /* BranchEventExtensionTests.m */,
 				7B7C90E81EA6EC8C005B470E /* BranchLinkPropertiesExtensionTests.m */,
 				7B7C90E41EA6E496005B470E /* BranchUniversalObjectExtensionTests.m */,
 				7B7C90E21EA6E07C005B470E /* NSObjectExtensionTests.m */,
@@ -158,8 +161,8 @@
 				7B23B65E1E9FDCEA006CEE75 /* Sources */,
 				7B23B65F1E9FDCEA006CEE75 /* Frameworks */,
 				7B23B6601E9FDCEA006CEE75 /* Resources */,
-				94FD90B7556C943A9A286BA7 /* [CP] Embed Pods Frameworks */,
-				0937FD4A490D5B49985BCB37 /* [CP] Copy Pods Resources */,
+				D7C807B0ED29887AC0B31008 /* [CP] Embed Pods Frameworks */,
+				F4E8996EF826D199BEEABC1C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,8 +181,8 @@
 				7B23B6771E9FDCEB006CEE75 /* Sources */,
 				7B23B6781E9FDCEB006CEE75 /* Frameworks */,
 				7B23B6791E9FDCEB006CEE75 /* Resources */,
-				FB29F1B0E7AF342F7752C988 /* [CP] Embed Pods Frameworks */,
-				936E68DD5770C0671F00422F /* [CP] Copy Pods Resources */,
+				C9733F6B85E1FF246BA73BBD /* [CP] Embed Pods Frameworks */,
+				82EA9DFF4FDE10E303C9E76D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,7 +200,7 @@
 		7B23B65A1E9FDCEA006CEE75 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Branch Metrics";
 				TargetAttributes = {
 					7B23B6611E9FDCEA006CEE75 = {
@@ -250,21 +253,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0937FD4A490D5B49985BCB37 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NativeTests/Pods-NativeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7F70627ADDED9ABB9D7597EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,7 +289,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		936E68DD5770C0671F00422F /* [CP] Copy Pods Resources */ = {
+		82EA9DFF4FDE10E303C9E76D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -316,7 +304,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NativeTestsTests/Pods-NativeTestsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94FD90B7556C943A9A286BA7 /* [CP] Embed Pods Frameworks */ = {
+		C9733F6B85E1FF246BA73BBD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NativeTestsTests/Pods-NativeTestsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7C807B0ED29887AC0B31008 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -331,19 +334,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NativeTests/Pods-NativeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB29F1B0E7AF342F7752C988 /* [CP] Embed Pods Frameworks */ = {
+		F4E8996EF826D199BEEABC1C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NativeTestsTests/Pods-NativeTestsTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NativeTests/Pods-NativeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -368,6 +371,7 @@
 				7BCEC8B01E9FE59A00271263 /* RNBranchAgingDictionaryTests.m in Sources */,
 				7B7C90E31EA6E07C005B470E /* NSObjectExtensionTests.m in Sources */,
 				7B7C90E51EA6E496005B470E /* BranchUniversalObjectExtensionTests.m in Sources */,
+				7B84EBA91FD203B1009C6C87 /* BranchEventExtensionTests.m in Sources */,
 				7BAD46FB1EAA66E700080008 /* RNBranchTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,7 +397,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -401,7 +407,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -442,7 +452,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -450,7 +462,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

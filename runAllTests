@@ -27,10 +27,10 @@ else
   npm install
 fi
 
-bundle install
+bundle check || bundle install
 
-bundle exec fastlane test_android
-bundle exec fastlane test_ios
+bundle exec fastlane android test
+bundle exec fastlane ios test
 
 if [[ "$HAVE_YARN" = 1 ]] ; then
   yarn lint

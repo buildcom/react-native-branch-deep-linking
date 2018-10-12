@@ -1,22 +1,41 @@
-require './lib/update_native_sdks'
+actions_path("lib/actions")
 
-fastlane_version "2.26.1"
+fastlane_version "2.69.0"
 
 default_platform :ios
 
-desc "Run Android unit tests"
-lane :test_android do
-  # for development on a Mac. Override with the env. var.
-  ENV['ANDROID_HOME'] ||= "#{ENV['HOME']}/Library/Android/sdk"
-  gradle task: "test", project_dir: "native-tests/android"
+platform :android do
+  desc "Run Android unit tests"
+  lane :test do
+    # for development on a Mac. Override with the env. var.
+    ENV['ANDROID_HOME'] ||= "#{ENV['HOME']}/Library/Android/sdk"
+    gradle task: "test", project_dir: "native-tests/android"
+  end
 end
 
-desc "Run iOS unit tests"
-lane :test_ios do
-  scan
+platform :ios do
+  desc "Run iOS unit tests"
+  lane :test do
+    scan
+  end
 end
 
 desc "Update native SDKs"
 lane :native_update do
   update_native_sdks
+  # update_native_sdks(
+  #   android_checkout: "2.14.0" , # any commit, branch or tag in the Android repo. Default: latest tag
+  #   ios_checkout:     "0.21.11", # any commit, branch or tag in the iOS repo. Default: latest tag
+  #   commit:               false, # Don't commit the results. Default: true
+  #   verbose:               true  # Generate verbose output. Default: false
+  # )
+end
+
+# Examples:
+# bundle exec fastlane bump # patch increment
+# bundle exec fastlane bump version:2.3.0 # update to any specific version
+# bundle exec fastlane bump tag:yes # add a tag after committing
+desc "Increment version number"
+lane :bump do |opts|
+  version_bump opts
 end

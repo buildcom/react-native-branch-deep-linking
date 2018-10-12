@@ -20,6 +20,9 @@
 		7B5C79201E959B53002FE942 /* ReactBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C791F1E959B53002FE942 /* ReactBridge.swift */; };
 		7B5C79251E95A6BC002FE942 /* RCTSwiftLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C79241E95A6BC002FE942 /* RCTSwiftLog.m */; };
 		7B5C79271E95A946002FE942 /* RCTLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C79261E95A946002FE942 /* RCTLog.swift */; };
+		7BAA94F21F57622500C57B54 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BAA94F11F57622500C57B54 /* CoreSpotlight.framework */; };
+		7BAA94F41F57631700C57B54 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BAA94F31F57631700C57B54 /* AdSupport.framework */; };
+		7BAA94F61F57631C00C57B54 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BAA94F51F57631C00C57B54 /* SafariServices.framework */; };
 		9DAD2FE7A1CEA90F3A3E6367 /* Pods_WebViewExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F71C7570D66540364CE97A /* Pods_WebViewExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,9 @@
 		7B5C79231E95A6BC002FE942 /* RCTSwiftLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSwiftLog.h; sourceTree = "<group>"; };
 		7B5C79241E95A6BC002FE942 /* RCTSwiftLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSwiftLog.m; sourceTree = "<group>"; };
 		7B5C79261E95A946002FE942 /* RCTLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTLog.swift; sourceTree = "<group>"; };
+		7BAA94F11F57622500C57B54 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		7BAA94F31F57631700C57B54 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7BAA94F51F57631C00C57B54 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		A14C7B96994ECEB8E6C5DB86 /* Pods-WebViewExample.test-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebViewExample.test-debug.xcconfig"; path = "Pods/Target Support Files/Pods-WebViewExample/Pods-WebViewExample.test-debug.xcconfig"; sourceTree = "<group>"; };
 		D1F71C7570D66540364CE97A /* Pods_WebViewExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebViewExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -54,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BAA94F61F57631C00C57B54 /* SafariServices.framework in Frameworks */,
+				7BAA94F41F57631700C57B54 /* AdSupport.framework in Frameworks */,
+				7BAA94F21F57622500C57B54 /* CoreSpotlight.framework in Frameworks */,
 				9DAD2FE7A1CEA90F3A3E6367 /* Pods_WebViewExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +73,9 @@
 		3AFB5C04BFAF3CFD5D3B84F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7BAA94F51F57631C00C57B54 /* SafariServices.framework */,
+				7BAA94F31F57631700C57B54 /* AdSupport.framework */,
+				7BAA94F11F57622500C57B54 /* CoreSpotlight.framework */,
 				D1F71C7570D66540364CE97A /* Pods_WebViewExample.framework */,
 			);
 			name = Frameworks;
@@ -135,8 +147,8 @@
 				7B3B977D1E8C1B650089C04B /* Frameworks */,
 				7B3B977E1E8C1B650089C04B /* Resources */,
 				B83EB663911AC8B2CA5E28B1 /* [CP] Embed Pods Frameworks */,
-				DF74DA356D0CBFBBC39E6377 /* [CP] Copy Pods Resources */,
 				7B5C791C1E959348002FE942 /* Bundle React Native code and images */,
+				47AAFFFB742D719C77A2E9DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,12 +166,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Branch Metrics";
 				TargetAttributes = {
 					7B3B977F1E8C1B650089C04B = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = R63EM248DP;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
@@ -201,6 +214,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		47AAFFFB742D719C77A2E9DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebViewExample/Pods-WebViewExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7B5C791B1E95931A002FE942 /* Start React Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,7 +268,6 @@
 				"${BUILT_PRODUCTS_DIR}/Branch-SDK/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/React/React.framework",
-				"${BUILT_PRODUCTS_DIR}/TextAttributes/TextAttributes.framework",
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-branch/react_native_branch.framework",
 			);
@@ -249,7 +276,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextAttributes.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_branch.framework",
 			);
@@ -274,21 +300,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF74DA356D0CBFBBC39E6377 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebViewExample/Pods-WebViewExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -343,7 +354,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -351,7 +364,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -390,9 +407,10 @@
 				DEVELOPMENT_TEAM = R63EM248DP;
 				INFOPLIST_FILE = WebViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.sdk.Branch-TestBed";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.react.webview-example-native-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Test-Release";
@@ -407,7 +425,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -415,7 +435,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -462,9 +486,10 @@
 				DEVELOPMENT_TEAM = R63EM248DP;
 				INFOPLIST_FILE = WebViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.sdk.Branch-TestBed";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.react.webview-example-native-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Test-Debug";
@@ -479,7 +504,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -487,7 +514,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -534,7 +565,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -542,7 +575,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -579,9 +616,10 @@
 				DEVELOPMENT_TEAM = R63EM248DP;
 				INFOPLIST_FILE = WebViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.sdk.Branch-TestBed";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.react.webview-example-native-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -595,9 +633,10 @@
 				DEVELOPMENT_TEAM = R63EM248DP;
 				INFOPLIST_FILE = WebViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.sdk.Branch-TestBed";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.branch.react.webview-example-native-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

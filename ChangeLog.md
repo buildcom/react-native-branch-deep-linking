@@ -146,11 +146,72 @@
   * Added support for platform-specific branch.json.
   * Includes native SDKs 0.16.2 (iOS), 2.10.3 (Android).
 
-2016-08-17  Version 2.0.0-rc.1
+2017-08-17  Version 2.0.0-rc.1
   * (Internal) Native SDK updates are now automated.
   * Includes native SDKs 0.17.9 (iOS), 2.11.1 (Android).
 
-2016-08-21  Version 2.0.0-rc.2
+2017-08-21  Version 2.0.0-rc.2
   * Fixed automation bug that generated an RNBranch.xcodeproj that failed with `react-native link`.
   * Regenerated RNBranch.xcodeproj to fix `react-native link` bug (#239).
   * Includes native SDKs 0.17.9 (iOS), 2.11.1 (Android).
+
+2017-08-30  Version 2.0.0
+  * Added sendCommerceEvent method.
+  * Complete rewrite of the README.
+  * Removed the peerDependency on `react`.
+  * Includes native SDKs 0.17.10 (iOS), 2.12.0 (Android).
+
+2017-10-02  Version 2.1.0
+  * Added an openURL method for programmatic deep linking from anywhere in an app (e.g., a QR reader).
+  * Allow loading rewards from different buckets via an optional argument to loadRewards().
+  * Return RNBranch::Error::DuplicateResourceError in case of an existing alias.
+  * Further rework of the README.
+  * Introduced a tutorial app.
+  * Includes native SDKs 0.19.5 (iOS), 2.12.1 (Android).
+
+2017-10-17  Version 2.1.1
+  * Fix for +non_branch_link issue on Android (#216).
+  * Suppress some warnings with Xcode 9.
+  * Added a troubleshooting section to the README.
+  * Includes native SDKs 0.19.5 (iOS), 2.12.2 (Android).
+
+2017-12-11  Version 2.2.0
+  * Adds BranchEvent class
+  * Adds new Branch Universal Object API
+  * Added requiresMainQueueSetup as required by v0.49+ of RN via @UrbanChrisy (#299)
+  * Fix incorrect event type when error = null via @wildseansy (#285)
+  * Includes native SDKs 0.21.14 (iOS), 2.14.2 (Android).
+
+2017-12-14  Version 2.2.1
+  * Fixes certain BUO content metadata field mappings: productCategory, addressPostalCode, ratingAverage
+  * Includes native SDKs 0.21.14 (iOS), 2.14.2 (Android).
+
+2017-12-22  Version 2.2.2
+  * Get rid of unnecessary version check for iOS 8 (#309)
+  * Some corrections to handling of Branch Universal Object content metadata.
+  * Includes native SDKs 0.21.16 (iOS), 2.14.3 (Android).
+
+2018-01-04  Version 2.2.3
+  * Updated to iOS SDK 0.22.4 to fix backward compatibility issues with metadata. #311
+  * Includes native SDKs 0.22.4 (iOS), 2.14.3 (Android).
+
+2018-01-09  Version 2.2.4
+  * Updated to Android SDK 2.14.4.
+  * Includes native SDKs 0.22.4 (iOS), 2.14.4 (Android).
+
+2018-04-14  Version 2.2.5
+  * `setRequestMetadata` support to RNBranch module.
+  * Fixed custom event issues on iOS and Android #317.
+  * Fixed async `subscribe` call issue #322.
+  * Fixed `getLatestReferringParams` release issue #282.
+  * Updated to iOS SDK 0.22.5 and Android SDK 2.15.0.
+  * Includes native SDKs 0.22.5 (iOS), 2.15.0 (Android).
+
+2018-07-20  Version 2.3.2
+  * Updated to iOS SDK 0.24.1 and Android SDK 2.17.1.
+  * V2 event support updates.
+  * Link data read updates.
+  * Node dependency updates.
+
+2018-07-25  Version 2.3.3
+  * Updated to iOS SDK 0.25.1 and Android SDK 2.19.0.
